@@ -1,15 +1,15 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import * as React from 'react';
-import { TodoItem } from './TodoItem';
+import { GetMyTodosQuery } from '../../generated/graphql';
 
-interface filterResults {
+interface FilterResults {
   (filter: string): void
 }
 
 interface TodoFiltersArgs {
-  todos: TodoItem[],
+  todos: GetMyTodosQuery["todos"],
   currentFilter: string,
-  filterResultsFn: filterResults,
+  filterResultsFn: FilterResults,
   clearCompletedFn: VoidFunction
 }
 
@@ -20,7 +20,7 @@ const TodoFilters = ({
   clearCompletedFn
 }: TodoFiltersArgs) => {
   
-  const filterResultsHandler:filterResults = (filter: string) => { // enum type def
+  const filterResultsHandler:FilterResults = (filter: string) => { // enum type def
     filterResultsFn(filter);
   };
 
